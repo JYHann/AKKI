@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView5"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="165dp"-->
+<!--        android:layout_marginTop="320dp"-->
+<!--        android:layout_marginEnd="187dp"-->
+<!--        android:layout_marginBottom="392dp"-->
+<!--        android:text="inout2_2"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_to_premonth"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:text="&lt;"
+            android:onClick="clickHandler"
+            tools:ignore="ButtonStyle"
+            />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="352dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+
+
+            android:paddingLeft="10dp"
+            android:textColor="#0E0E0E"
+
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_to_nextmonth"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:text="&gt;"
+            android:onClick="clickHandler"
+            tools:ignore="ButtonStyle"
+
+            />
+    </LinearLayout>
+
+    <GridView
+        android:layout_marginTop="10dp"
+        android:id="@+id/gridview"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:numColumns="7"
+        android:listSelector="@color/transparent"
+        >
+    </GridView>
+
+</LinearLayout>

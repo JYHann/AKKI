@@ -1,0 +1,26 @@
+{
+	"auth": {
+		"sanhak3bb6c1b94": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"api": {
+		"sanhak3": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authsanhak3bb6c1b94"
+						}
+					}
+				}
+			}
+		}
+	}
+}

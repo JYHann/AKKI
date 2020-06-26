@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sanhak3</string>
+    <string name="inout">Inout</string>
+    <string name="balance">Balance</string>
+    <string name="pattern">Pattern</string>
+    <string name="card">Card</string>
+    <string name="community">Community</string>
+</resources>
