@@ -86,6 +86,7 @@ public class FragmentPattern extends Fragment {
     private String idx;
 
     private InoutData inoutData = new InoutData();
+    ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -118,6 +119,7 @@ public class FragmentPattern extends Fragment {
                 Toast errorMsg = Toast.makeText(view.getContext(), "데이터 읽어오기 실패!", Toast.LENGTH_SHORT);
                 errorMsg.show();
             }
+
         });
 
         // spinner를 통해 값 선택 후 저장
@@ -162,14 +164,13 @@ public class FragmentPattern extends Fragment {
             }
         });
 
-        setManuFactureData();
-        drawPieChart(view);
+        setManuFactureData(view);
 
         inputBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                startActivity(new Intent(view.getContext(), SaveDataActivity.class));
-                view.findViewById(R.id.piechart).setVisibility(View.INVISIBLE);
+                view.findViewById(R.id.piechart).setVisibility(View.GONE);
                 view.findViewById(R.id.input_inout_data).setVisibility(View.VISIBLE);
             }
         });
@@ -210,7 +211,7 @@ public class FragmentPattern extends Fragment {
         return strisdisit;
     }
 
-    public void setManuFactureData(){
+    public void setManuFactureData(View v){
         for(int i = 0; i < inoutDatas.size(); i++){
             if(inoutDatas.get(i).getCategory().equals("음식")) {
                 food += Float.parseFloat(inoutDatas.get(i).getPrice());
@@ -229,6 +230,7 @@ public class FragmentPattern extends Fragment {
 
             }
         }
+        drawPieChart(v);
     }
 
     public void drawPieChart(View v){
@@ -236,16 +238,16 @@ public class FragmentPattern extends Fragment {
 
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
-        pieChart.setExtraOffsets(5,1,5,5);
+        pieChart.setExtraOffsets(5,10,5,5);
 
         pieChart.setDragDecelerationFrictionCoef(0.95f);
 
-        pieChart.setDrawHoleEnabled(false);
+        pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleColor(Color.WHITE);
         pieChart.setTransparentCircleRadius(61f);
 
 
-        ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
+
 
         Log.d("Tag >>> ", "Food : " + food);
 
@@ -269,12 +271,12 @@ public class FragmentPattern extends Fragment {
 
         PieDataSet dataSet = new PieDataSet(yValues,"소비패턴");
         dataSet.setSliceSpace(3f);
-        dataSet.setSelectionShift(6f);
+        dataSet.setSelectionShift(5f);
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
 
         PieData data = new PieData((dataSet));
-        data.setValueTextSize(20f);
-        data.setValueTextColor(Color.BLACK);
+        data.setValueTextSize(10f);
+        data.setValueTextColor(Color.YELLOW);
 
         pieChart.setData(data);
     }

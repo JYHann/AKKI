@@ -80,7 +80,7 @@ public class FragmentBalance extends Fragment {
             URL url = new URL(urlString);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzUyNTcwIiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE1OTgxODAwODAsImp0aSI6IjU0ODEyNTIwLWNkYzMtNDQ4ZS04OGUwLWRmYjJlMWU1ZTQ0OCJ9.mBLuXXRaY_Havg0-jMSrbwlrX4mLOSnpgOaM5WuMmn8");
+            urlConnection.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzUyNTcwIiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE1OTg4NzgxNDksImp0aSI6IjQzM2I2YzJiLWIyMDQtNGMxYi04NzM3LWEzNzcyYzNmYzcwOCJ9.075V1R3_2eutHSRSIC-3sx2AENp-tYRCmx7WAkA95X0");
             urlConnection.setConnectTimeout(5000);
             urlConnection.setReadTimeout(5000);
 

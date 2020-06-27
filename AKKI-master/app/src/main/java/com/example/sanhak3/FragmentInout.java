@@ -1,6 +1,7 @@
 package com.example.sanhak3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,10 +58,10 @@ public class FragmentInout extends Fragment implements View.OnClickListener {
     String after_balance_amt;
     String branch_name;
     ArrayList<nameserv> arr = new ArrayList<nameserv>();
-
+    inoutAdapter adapter = new inoutAdapter() ;
     private FragmentManager fragmentManager;
     private FragmentInout2_1 fragmentA;
-    private FragmentInout2_2 fragmentB;
+
     private FragmentTransaction transaction;
 
 
@@ -68,12 +70,23 @@ public class FragmentInout extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.fragment_inout,container,false);
         fragmentManager = getFragmentManager();
-        Button cButton = view.findViewById(R.id.btn_fragment_inout2_1);
-        Button dButton = view.findViewById(R.id.btn_fragment_inout2_2);
-        cButton.setOnClickListener(this);
-        dButton.setOnClickListener(this);
 
-        edtHtml = (TextView) view.findViewById(R.id.inoutView);
+        /*Button fButton = view.findViewById(R.id.btn_fragment_inout2_2);
+        fButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getActivity(), ActivityInout2_2.class);
+                startActivity(intent);*/
+        ListView listview ;
+        listview = (ListView) view.findViewById(R.id.list_inout2_1);
+        listview.setAdapter(adapter);
+
+        // Adapter 생성
+
+        // 리스트뷰 참조 및 Adapter달기
+
+        // edtHtml = (TextView) view.findViewById(R.id.inoutView);
+
 
         new Thread() {
             public void run() {
@@ -89,25 +102,27 @@ public class FragmentInout extends Fragment implements View.OnClickListener {
                         tran_amt = otl.res_list.getJSONObject(i).get("tran_amt").toString();
                         after_balance_amt = otl.res_list.getJSONObject(i).get("after_balance_amt").toString();
                         branch_name = otl.res_list.getJSONObject(i).get("branch_name").toString();
-                        arr.add(new nameserv(print_content,Integer.parseInt(tran_amt)));
-
-
-                        openTransactionList += "날짜: " + tran_date + " 구분: " + inout_type + "\n상호명: " + print_content +
-                                " 지점명: " + branch_name + "\n금액: " + tran_amt + " 거래 후 잔액: " + after_balance_amt+"\n";
+                        arr.add(new nameserv(print_content,Integer.parseInt(tran_amt),tran_date,inout_type));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Bundle bun = new Bundle();
+                /*아거Bundle bun = new Bundle();
                 bun.putString("HTML_TRANSACTION", openTransactionList);
 
                 Message msg = handler.obtainMessage();
                 msg.setData(bun);
                 handler.sendMessage(msg);
+                */
                 SaveservData(arr);
-                Log.i("zzzzzzzzzzz",arr.size()+"");
+
             }
         }.start();
+        ArrayList<nameserv> newarr = ReadservData();
+        for(int i=0;i<newarr.size();i++)
+        {
+            adapter.addItem(newarr.get(i).date,newarr.get(i).name,newarr.get(i).price+"","우리은행");
+        }
 
 
         return view;
@@ -118,13 +133,13 @@ public class FragmentInout extends Fragment implements View.OnClickListener {
 
     }
 
-    Handler handler = new Handler() {
+   /* Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             Bundle bun = msg.getData();
             String openTransactionList = bun.getString("HTML_TRANSACTION");
             edtHtml.setText(openTransactionList);
         }
-    };
+    };*/
 
 
 

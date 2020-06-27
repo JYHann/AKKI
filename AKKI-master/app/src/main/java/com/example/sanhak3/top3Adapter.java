@@ -72,7 +72,7 @@ public class top3Adapter extends RecyclerView.Adapter<top3Adapter.CustomViewHold
                 viewholder.rank.setImageResource(R.drawable.rank3);
                 break;
         }
-        viewholder.cost.setText(mList.get(position).sum+"원을 아낄 수 있습니다.");
+        viewholder.cost.setText("월 "+mList.get(position).sum+"원을 아낄 수 있습니다.");
     }
 
     @Override

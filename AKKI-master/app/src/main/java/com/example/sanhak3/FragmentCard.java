@@ -64,7 +64,6 @@ public class FragmentCard extends Fragment{
         button = (LinearLayout) view.findViewById(R.id.button);
         listView = (ListView) view.findViewById(R.id.list_view);
         btext = (TextView)view.findViewById(R.id.textView6);
-        bim = (ImageView)view.findViewById(R.id.imageView4);
         vp = (ViewPager2)view.findViewById(R.id.vp2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,14 +71,12 @@ public class FragmentCard extends Fragment{
                 if (btext.getText().equals("더보기")) {
                     vp.setVisibility(View.GONE);
                     listView.setVisibility(View.VISIBLE);
-                    bim.setImageResource(R.drawable.minus);
                     btext.setText("닫기");
                 }
                 else
                 {
                     vp.setVisibility(View.VISIBLE);
                     listView.setVisibility(View.GONE);
-                    bim.setImageResource(R.drawable.more);
                     btext.setText("더보기");
                 }
             }
@@ -118,6 +115,7 @@ public class FragmentCard extends Fragment{
             jsonData = jsonData.substring(1,jsonData.length()-1);
             Log.i("zzzzzzzz",jsonData);
             JSONObject jsonObject = null;
+            cardsArrayLIst.clear();
             try {
                 jsonObject = new JSONObject(jsonData);
                 JSONArray cardArray = jsonObject.getJSONArray("Items");
