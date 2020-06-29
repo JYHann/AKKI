@@ -11,19 +11,28 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:layout_margin="5dp">
 
         <TextView
-            android:id="@+id/comu_menu"
+            android:id="@+id/comu_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:includeFontPadding="true"
             android:text="MENU_TITLE"
             android:textSize="30sp"
             android:textColor="@android:color/black"
-            android:padding="5dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/edit_round"/>
+            android:paddingBottom="3dp"/>
+
+        <TextView
+            android:id="@+id/comu_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="true"
+            android:text="MENU_CONTENT"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
 
     </LinearLayout>
 
